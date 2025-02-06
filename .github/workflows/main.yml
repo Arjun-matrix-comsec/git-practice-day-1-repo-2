@@ -1,0 +1,36 @@
+name: practice-1
+
+on:
+  push:
+    branches: main
+
+  workflow_dispatch:
+
+  issues:
+    types: opened, closed
+
+jobs:
+  build:
+    runs-on:  ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@latest
+
+      - name: print Hello World
+        run: echo "Hello World"
+
+      - name: upload
+        uses: actions/upload-artifact@latest
+        with:
+          name: build=artifact
+          path: ${{github.workspace}}
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: download
+        uses: actions/download-artifact@latest
+        with:
+          name: build=artifact
+          path: ${{github.workspace}}
