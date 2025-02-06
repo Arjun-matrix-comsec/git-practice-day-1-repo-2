@@ -14,13 +14,13 @@ jobs:
     runs-on:  ubuntu-latest
     
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@4.2.2
 
       - name: print Hello World
         run: echo "Hello World"
 
       - name: upload
-        uses: actions/upload-artifact@latest
+        uses: actions/upload-artifact@4.6.0
         with:
           name: build=artifact
           path: ${{github.workspace}}
@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: download
-        uses: actions/download-artifact@latest
+        uses: actions/download-artifact@4.1.8
         with:
           name: build=artifact
           path: ${{github.workspace}}
